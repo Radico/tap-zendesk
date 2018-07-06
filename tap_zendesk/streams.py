@@ -50,10 +50,6 @@ class BOOK(object):
 
 
 def sync(context):
-    # for stream in context.selected_stream_ids:
-    #     if stream.upper() in BOOK.get_full_syncs():
-    #         call_stream_full(context, stream)
-
     for stream in context.selected_stream_ids:
         if stream.upper() in BOOK.get_incremental_syncs():
             bk = call_stream_incremental(context, stream)
@@ -67,6 +63,9 @@ def call_stream_incremental(ctx, stream):
     params = {"start_time": pendulum.parse(last_updated).int_timestamp}
 
     while True:
+        logger.info("Extracting users since %s" % timestamp_to_iso8601(
+            params['start_time']))
+
         res = ctx.client.GET(stream, params, stream)
 
         write_records(stream, res.get(stream))
@@ -84,10 +83,13 @@ def call_stream_incremental(ctx, stream):
 
 def get_state_to_save(res, last_updated):
     if res.get('end_time'):
-        return pendulum.from_timestamp(int(res['end_time'])).to_iso8601_string()
+        return timestamp_to_iso8601(res['end_time'])
     else:
         return last_updated
 
+
+def timestamp_to_iso8601(ts):
+    return pendulum.from_timestamp(int(ts)).to_iso8601_string()
 
 def save_state(context, stream, bk):
     context.set_bookmark(BOOK.return_bookmark_path(stream), bk)
