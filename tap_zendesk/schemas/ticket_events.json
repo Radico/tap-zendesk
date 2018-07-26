@@ -85,7 +85,8 @@
           },
           "priority": {
             "type": [
-              "null"
+              "null",
+              "string"
             ]
           },
           "type": {
