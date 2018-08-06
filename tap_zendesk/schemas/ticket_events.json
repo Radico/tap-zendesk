@@ -57,7 +57,7 @@
           "via_reference_id": {
             "type": [
               "null",
-              "string"
+              "integer"
             ]
           },
           "subject": {
