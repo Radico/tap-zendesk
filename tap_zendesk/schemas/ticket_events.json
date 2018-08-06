@@ -56,7 +56,8 @@
           },
           "via_reference_id": {
             "type": [
-              "null"
+              "null",
+              "string"
             ]
           },
           "subject": {
