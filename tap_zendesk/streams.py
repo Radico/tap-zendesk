@@ -91,6 +91,7 @@ def get_state_to_save(res, last_updated):
 def timestamp_to_iso8601(ts):
     return pendulum.from_timestamp(int(ts)).to_iso8601_string()
 
+
 def save_state(context, stream, bk):
     context.set_bookmark(BOOK.return_bookmark_path(stream), bk)
     context.write_state()

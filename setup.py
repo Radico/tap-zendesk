@@ -10,13 +10,14 @@ setup(
     classifiers=["Programming Language :: Python :: 3 :: Only"],
     py_modules=["tap_zendesk"],
     install_requires=[
-        "singer-python==5.1.5",
-        "requests",
-        "pendulum==1.2.0"
+        "singer-python==5.2.0",
+        'requests==2.18.4',
+        "pendulum==1.2.0",
     ],
     entry_points="""
     [console_scripts]
     tap-zendesk=tap_zendesk:main
+    tap-zendesk-kit=tap_zendesk.kit:main
     """,
     packages=["tap_zendesk"],
     package_data={
