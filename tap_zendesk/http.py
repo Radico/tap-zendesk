@@ -10,6 +10,7 @@ logger = singer.get_logger()
 
 BASE_URL = 'https://{domain}.zendesk.com/api/{version}/{resource}.json'
 INCREMENTAL_URL = 'https://{domain}.zendesk.com/api/{version}/incremental/{resource}.json'
+ZOPIM_BASE_URL = 'https://www.zopim.com/api/{version}/{resource}'
 
 
 class RateLimitException(Exception):
@@ -28,45 +29,62 @@ class Client(object):
     def __init__(self, config):
         self.api_token = config.get("api_token")
         self.email = config.get("email")
+        self.password = config.get("password")
         self.domain = self.clean_domain(config)
         self.session = requests.Session()
 
     def prepare_and_send(self, request):
-        request.headers["Authorization"] = "Basic %s" % self.auth_tuple()
+        request.headers["Authorization"] = "Basic %s" % self.auth_tuple(request)
 
         return self.session.send(request.prepare())
 
     def clean_domain(self, config):
         return config.get('domain').split('.')[0]
 
-    def url(self, resource):
+    def url(self, resource, search):
 
         if resource == 'satisfaction_ratings':
             url_to_format = BASE_URL
+        elif resource == 'chats':
+            url_to_format = ZOPIM_BASE_URL
         else:
             url_to_format = INCREMENTAL_URL
 
-        return url_to_format.format(
+        url = url_to_format.format(
             domain=self.domain,
             version=self.API_VERSION,
             resource=resource
         )
 
-    def auth_tuple(self):
+        if search:
+            url = url + '/search'
+
+        return url
+
+    def auth_tuple(self, request):
         """
         {email_address}/token:{api_token}
         then base64 encoded and sent as
         Authorization: Basic b64_encoded_str
         :return:
         """
-        return base64.b64encode(
-            '{email_address}/token:{api_token}'.format(
-                email_address=self.email,
-                api_token=self.api_token
-            ).encode('ascii')).decode("utf-8")
+        #  zopim endpoint requires different auth parameters
+        if 'zopim' in request.url:
+            return base64.b64encode(
+                '{email_address}:{password}'.format(
+                    email_address=self.email,
+                    password=self.password
+                ).encode('ascii')).decode("utf-8")
+        else:
+            return base64.b64encode(
+                '{email_address}/token:{api_token}'.format(
+                    email_address=self.email,
+                    api_token=self.api_token
+                ).encode('ascii')).decode("utf-8")
 
     def create_get_request(self, path, params):
-        return requests.Request(method="GET", url=self.url(path),
+        search = True if 'q' in params else False
+        return requests.Request(method="GET", url=self.url(path, search),
                                 params=params)
 
     @backoff.on_exception(backoff.expo,

@@ -1,0 +1,283 @@
+{
+    "type": "object",
+    "properties": {
+        "comment": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "triggered_response": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "rating": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "visitor": {
+            "phone": {
+                "type": [
+                    "null",
+                    "string"
+                ]
+            },
+            "notes": {
+                "type": [
+                    "null",
+                    "string"
+                ]
+            },
+            "email": {
+                "type": [
+                    "null",
+                    "string"
+                ]
+            },
+            "id": {
+                "type": [
+                    "null",
+                    "string"
+                ]
+            },
+            "name": {
+                "type": [
+                    "null",
+                    "string"
+                ]
+            }
+        },
+        "session": {
+            "city": {
+                "type": [
+                    "null",
+                    "string"
+                ]
+            },
+            "end_date": {
+                "type": [
+                    "null",
+                    "string"
+                ]
+            },
+            "ip": {
+                "type": [
+                    "null",
+                    "string"
+                ]
+            },
+            "region": {
+                "type": [
+                    "null",
+                    "string"
+                ]
+            },
+            "id": {
+                "type": [
+                    "null",
+                    "string"
+                ]
+            },
+            "platform": {
+                "type": [
+                    "null",
+                    "string"
+                ]
+            },
+            "user_agent": {
+                "type": [
+                    "null",
+                    "string"
+                ]
+            },
+            "country_code": {
+                "type": [
+                    "null",
+                    "string"
+                ]
+            },
+            "country_name": {
+                "type": [
+                    "null",
+                    "string"
+                ]
+            },
+            "start_date": {
+                "type": [
+                    "null",
+                    "string"
+                ]
+            },
+            "browser": {
+                "type": [
+                    "null",
+                    "string"
+                ]
+            }
+        },
+        "duration": {
+            "type": [
+                "null",
+                "integer"
+            ]
+        },
+        "agent_names": {
+            "type": [
+                "null",
+                "array"
+            ]
+        },
+        "department_name": {
+            "type": [
+                "null",
+                "array"
+            ]
+        },
+        "id": {
+            "type": [
+                "null",
+                "array"
+            ]
+        },
+        "end_timestamp": {
+            "type": [
+                "null",
+                "array"
+            ]
+        },
+        "referrer_search_terms": {
+            "type": [
+                "null",
+                "array"
+            ]
+        },
+        "referrer_search_engine": {
+            "type": [
+                "null",
+                "array"
+            ]
+        },
+        "missed": {
+            "type": [
+                "null",
+                "boolean"
+            ]
+        },
+        "agent_ids": {
+            "type": [
+                "null",
+                "array"
+            ]
+        },
+        "webpath": {
+            "type": [
+                "null",
+                "array"
+            ]
+        },
+        "type": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "department_id": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "triggered": {
+            "type": [
+                "null",
+                "boolean"
+            ]
+        },
+        "tags": {
+            "type": [
+                "null",
+                "array"
+            ]
+        },
+        "timestamp": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "response_time": {
+            "max": {
+                "type": [
+                    "null",
+                    "integer"
+                ]
+            },
+            "avg": {
+                "type": [
+                    "null",
+                    "float"
+                ]
+            },
+            "first": {
+                "type": [
+                    "null",
+                    "integer"
+                ]
+            }
+        },
+        "count": {
+            "visitor": {
+                "type": [
+                    "null",
+                    "integer"
+                ]
+            },
+            "total": {
+                "type": [
+                    "null",
+                    "integer"
+                ]
+            },
+            "agent": {
+                "type": [
+                    "null",
+                    "integer"
+                ]
+            }
+        },
+        "zendesk_ticket_id": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "conversions": {
+            "type": [
+                "null",
+                "array"
+            ]
+        },
+        "started_by": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "unread": {
+            "type": [
+                "null",
+                "boolean"
+            ]
+        },
+        "history": {
+            "type": [
+                "null",
+                "array"
+            ]
+        }
+    }
+}

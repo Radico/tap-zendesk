@@ -10,6 +10,7 @@ class IDS(object):
     TICKET_EVENTS = 'ticket_events'
     TICKET_METRIC_EVENTS = 'ticket_metric_events'
     SATISFACTION_RATINGS = 'satisfaction_ratings'
+    CHATS = 'chats'
 
 
 stream_ids = [getattr(IDS, x) for x in dir(IDS)
@@ -21,6 +22,7 @@ PK_FIELDS = {
     IDS.TICKET_EVENTS: ['id'],
     IDS.TICKET_METRIC_EVENTS: ['id'],
     IDS.SATISFACTION_RATINGS: ['id'],
+    IDS.CHATS: ['id']
 }
 
 def load_schema(tap_stream_id):

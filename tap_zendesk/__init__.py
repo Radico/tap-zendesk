@@ -6,7 +6,7 @@ from . import streams as streams_
 from .context import Context
 from . import schemas
 
-REQUIRED_CONFIG_KEYS = ["start_date", "email", "domain", "api_token"]
+REQUIRED_CONFIG_KEYS = ["start_date", "email", "domain", "api_token", "password"]
 LOGGER = singer.get_logger()
 
 
@@ -19,8 +19,8 @@ def discover(ctx):
     catalog = Catalog([])
     for tap_stream_id in schemas.stream_ids:
         schema = Schema.from_dict(schemas.load_schema(tap_stream_id),
-                                  inclusion="automatic",
-                                  selected="true")
+                                inclusion="automatic",
+                                selected="true")
         catalog.streams.append(CatalogEntry(
             stream=tap_stream_id,
             tap_stream_id=tap_stream_id,
