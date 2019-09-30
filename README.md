@@ -13,6 +13,6 @@ This tap:
   - [Ticket events](https://developer.zendesk.com/rest_api/docs/core/ticket_metrics)
   - [Ticket metric events](https://developer.zendesk.com/rest_api/docs/core/ticket_metric_events)
   - [Satisfaction ratings](https://developer.zendesk.com/rest_api/docs/core/satisfaction_ratings)
-  - [Chats] (https://developer.zendesk.com/rest_api/docs/chat/chats)
+  - [Chats](https://developer.zendesk.com/rest_api/docs/chat/chats)
 - Outputs the schema for each resource
 - Incrementally pulls data based on the input state
