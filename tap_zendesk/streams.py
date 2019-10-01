@@ -63,10 +63,12 @@ def call_stream_incremental(ctx, stream):
 
     #  chats uses a new zopim endpoint versus the legacy zendesk.com endpoint
     if stream == 'chats':
-        call_zopim_stream(ctx, stream, last_updated)
+        state_to_save = call_zopim_stream(ctx, stream, last_updated)
 
     else:
-        call_legacy_stream(ctx, stream, last_updated)
+        state_to_save = call_legacy_stream(ctx, stream, last_updated)
+    
+    return state_to_save
 
 def call_legacy_stream(ctx, stream, last_updated):
     params = {"start_time": pendulum.parse(last_updated).int_timestamp}
