@@ -1,4 +1,6 @@
-*_config.json
+*config.json
+*catalog.json
+*state.json
 ../*
 .idea/*
 
@@ -105,4 +107,3 @@ config.json
 rsa-key
 tags
 singer-check-tap-data
-state.json

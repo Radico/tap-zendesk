@@ -70,12 +70,15 @@ def call_stream_incremental(ctx, stream):
     
     return state_to_save
 
+
 def call_legacy_stream(ctx, stream, last_updated):
     params = {"start_time": pendulum.parse(last_updated).int_timestamp}
 
     while True:
-        logger.info("Extracting users since %s" % timestamp_to_iso8601(
-            params['start_time']))
+        logger.info("Extracting {s} since {ts}".format(
+            s=stream,
+            ts=timestamp_to_iso8601(params['start_time'])
+        ))
 
         res = ctx.client.GET(stream, params, stream)
 
@@ -90,6 +93,7 @@ def call_legacy_stream(ctx, stream, last_updated):
             break
 
     return get_state_to_save(res, last_updated)
+
 
 def call_zopim_stream(ctx, stream, last_updated):
     start_time = last_updated
@@ -134,11 +138,13 @@ def call_zopim_stream(ctx, stream, last_updated):
 
     return get_state_to_save(res={}, last_updated=last_updated)
 
+
 def fetch_chat_ids(ctx, stream, params):
     res = ctx.client.GET(stream, params, stream)
     ids = res.get('results')
     next_url = res.get('next_url') if 'next_url' in res else None
     return ids, next_url
+
 
 def fetch_chat_detail(ctx, stream, ids):
     ids = list(map(lambda result: result.get('id'), ids))
@@ -155,7 +161,7 @@ def fetch_chat_detail(ctx, stream, ids):
             if pointer + max_batch_size < len_ids \
             else len_ids
         batch_of_ids = ids[start:end]
-        logger.info('Fetching %s chat details:' % len(batch_of_ids))
+        logger.info('Fetching {l} chat details:'.format(len(batch_of_ids)))
         comma_sep_ids = ",".join(batch_of_ids)
 
         params = {'ids': comma_sep_ids}
@@ -169,6 +175,7 @@ def fetch_chat_detail(ctx, stream, ids):
     
     return detailed_results
 
+
 def get_state_to_save(res, last_updated):
     if res.get('end_time'):
         return timestamp_to_iso8601(res['end_time'])
@@ -178,6 +185,7 @@ def get_state_to_save(res, last_updated):
 
 def timestamp_to_iso8601(ts):
     return pendulum.from_timestamp(int(ts)).to_iso8601_string()
+
 
 def save_state(context, stream, bk):
     context.set_bookmark(BOOK.return_bookmark_path(stream), bk)
