@@ -161,7 +161,7 @@ def fetch_chat_detail(ctx, stream, ids):
             if pointer + max_batch_size < len_ids \
             else len_ids
         batch_of_ids = ids[start:end]
-        logger.info('Fetching {l} chat details:'.format(len(batch_of_ids)))
+        logger.info('Fetching {n} chat details:'.format(n=len(batch_of_ids)))
         comma_sep_ids = ",".join(batch_of_ids)
 
         params = {'ids': comma_sep_ids}
