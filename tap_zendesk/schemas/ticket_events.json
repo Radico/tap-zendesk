@@ -58,7 +58,8 @@
           "via_reference_id": {
             "type": [
               "null",
-              "integer"
+              "integer",
+	      "string"
             ]
           },
           "subject": {
@@ -70,7 +71,8 @@
           "requester_id": {
             "type": [
               "null",
-              "integer"
+              "integer",
+	      "string"
             ]
           },
           "locale_id": {
@@ -100,7 +102,8 @@
           "group_id": {
             "type": [
               "null",
-              "integer"
+              "integer",
+	      "string"
             ]
           },
           "custom_ticket_fields": {
@@ -174,7 +177,8 @@
           "assignee_id": {
             "type": [
               "null",
-              "integer"
+              "integer",
+	      "string"
             ]
           }
         }
@@ -227,7 +231,8 @@
     "ticket_id": {
       "type": [
         "null",
-        "integer"
+        "integer",
+	"string"
       ]
     },
     "id": {
@@ -240,7 +245,8 @@
     "updater_id": {
       "type": [
         "null",
-        "integer"
+        "integer",
+	"string"
       ]
     }
   }
