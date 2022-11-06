@@ -233,7 +233,8 @@
     "id": {
       "type": [
         "null",
-        "integer"
+        "integer",
+	"string"
       ]
     },
     "updater_id": {
