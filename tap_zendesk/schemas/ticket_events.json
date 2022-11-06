@@ -51,7 +51,8 @@
           "id": {
             "type": [
               "null",
-              "integer"
+              "integer",
+	      "string"
             ]
           },
           "via_reference_id": {
